@@ -19,14 +19,14 @@ module scenes {
             this._endLabel = new objects.Label(
                 "END SCENE", "60px Consolas",
                 "#000000",
-                config.Screen.CENTER_X, config.Screen.CENTER_Y);
+                config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
             this.addChild(this._endLabel);
             
             // add the BACK button to the OVER scene
             this._startOverButton = new objects.Button(
                 "StartOverButton",
                 config.Screen.CENTER_X,
-                config.Screen.CENTER_Y + 180);
+                config.Screen.CENTER_Y + 180, true);
             this.addChild(this._startOverButton);
            
             // START_OVER Button event listener

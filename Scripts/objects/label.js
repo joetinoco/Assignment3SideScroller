@@ -9,10 +9,12 @@ var objects;
     var Label = (function (_super) {
         __extends(Label, _super);
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++++++++++++
-        function Label(labelString, labelFont, labelColour, x, y) {
+        function Label(labelString, labelFont, labelColour, x, y, centered) {
             _super.call(this, labelString, labelFont, labelColour);
-            this.regX = this.getBounds().width * 0.5;
-            this.regY = this.getBounds().height * 0.5;
+            if (centered) {
+                this.regX = this.getBounds().width * 0.5;
+                this.regY = this.getBounds().height * 0.5;
+            }
             this.x = x;
             this.y = y;
         }
@@ -20,4 +22,5 @@ var objects;
     }(createjs.Text));
     objects.Label = Label;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=label.js.map
