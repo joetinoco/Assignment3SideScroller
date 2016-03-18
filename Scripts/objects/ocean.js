@@ -8,32 +8,33 @@ var objects;
     // OCEAN CLASS ++++++++++++++++++++++++++++++++++++
     var Ocean = (function (_super) {
         __extends(Ocean, _super);
+        // PRIVATE INSTANCE VARIABLES +++++++++++++++++
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
         function Ocean() {
-            _super.call(this, assets.getResult("ocean"));
-            this._speed = 5; //ocean speed
-            this._reset();
+            _super.call(this, "ocean");
+            this._speed.y = 5; //ocean speed
+            this._reset(-960);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
-        Ocean.prototype._checkBounds = function () {
+        Ocean.prototype._checkBounds = function (value) {
             // check to see if the top of the ocean 
             // has met the top of the scene
-            if (this.y >= 0) {
-                this._reset();
+            if (this.y >= value) {
+                this._reset(-960);
             }
         };
         // reset the ocean offscreen
-        Ocean.prototype._reset = function () {
-            this.y = -960;
+        Ocean.prototype._reset = function (value) {
+            this.y = value;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         Ocean.prototype.update = function () {
             // scroll the ocean 5 px per frame
-            this.y += this._speed;
-            this._checkBounds();
+            this.y += this._speed.y;
+            this._checkBounds(0);
         };
         return Ocean;
-    }(createjs.Bitmap));
+    }(objects.GameObject));
     objects.Ocean = Ocean;
 })(objects || (objects = {}));
 

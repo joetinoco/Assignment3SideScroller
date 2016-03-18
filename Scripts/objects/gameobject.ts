@@ -1,27 +1,26 @@
 module objects {
-    // OCEAN CLASS ++++++++++++++++++++++++++++++++++++
-    export class Ocean extends objects.GameObject {
+    // GAMEOBJECT SUPER CLASS ++++++++++++++++++++++++++++++++++++
+    export class GameObject extends createjs.Bitmap {
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
+        protected _speed:createjs.Point;
         
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
-        constructor() {
-            super("ocean");
+        constructor(bitmapString:string) {
+            super(assets.getResult(bitmapString));
             
-           this._speed.y = 5; //ocean speed
-           this._reset(-960);
+           this._speed = new createjs.Point(0, 0);
         }
         
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         protected _checkBounds(value:number):void {
-            // check to see if the top of the ocean 
-            // has met the top of the scene
-            
+            var resetValue:number = 0;
+            // check if y value has met the reset criteria
             if(this.y >= value) {
-                this._reset(-960);
+                this._reset(resetValue);
             }
         }
         
-        // reset the ocean offscreen
+        // Reset the Object offscreen
         protected _reset(value:number):void {
             this.y = value;
         }
@@ -29,9 +28,10 @@ module objects {
         
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         public update():void {
+            var boundValue:number = 0;
             // scroll the ocean 5 px per frame
             this.y += this._speed.y;
-            this._checkBounds(0);
+            this._checkBounds(boundValue);
         }
     }
 }
