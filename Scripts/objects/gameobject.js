@@ -12,6 +12,12 @@ var objects;
         function GameObject(bitmapString) {
             _super.call(this, assets.getResult(bitmapString));
             this._speed = new createjs.Point(0, 0);
+            this._width = this.getBounds().width;
+            this._height = this.getBounds().height;
+            this._topBounds = -this._height;
+            this._bottomBounds = config.Screen.HEIGHT + this._height;
+            this._leftBounds = 0;
+            this._rightBounds = config.Screen.WIDTH - this._width;
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         GameObject.prototype._checkBounds = function (value) {
@@ -36,5 +42,4 @@ var objects;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=gameobject.js.map
