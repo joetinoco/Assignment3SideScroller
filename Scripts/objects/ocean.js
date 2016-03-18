@@ -18,7 +18,7 @@ var objects;
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         Ocean.prototype._checkBounds = function (value) {
             // check to see if the top of the ocean 
-            // has met the top of the scene
+            // is met the top of the scene
             if (this.y >= value) {
                 this._reset(-960);
             }
@@ -37,4 +37,5 @@ var objects;
     }(objects.GameObject));
     objects.Ocean = Ocean;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=ocean.js.map
