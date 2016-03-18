@@ -111,3 +111,5 @@ function changeScene(): void {
 
     console.log(currentScene.numChildren);
 }
+
+window.onload = preload;
