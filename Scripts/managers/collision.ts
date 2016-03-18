@@ -20,15 +20,24 @@ module managers {
             
             startPoint.x = this._player.x;
             startPoint.y = this._player.y;
-            console.log(startPoint);
             
-            endPoint.x = object.centerX;
-            endPoint.y = object.centerY;
+            endPoint.x = object.centerX + object.x;
+            endPoint.y = object.centerY + object.y;
             
             
+            /* check if the distance between the player and 
+              the other object is less than the minimum distance */
             if(this.distance(startPoint, endPoint) < minimumDistance) {
                 
-                console.log("Collision!");
+                // check if it's an island hit
+                if(object.name === "island") {
+                    console.log("island hit!");
+                }
+                
+                // check if it's a cloud hit
+                if(object.name === "cloud") {
+                    console.log("cloud hit!");
+                }
             }
         }
     }
