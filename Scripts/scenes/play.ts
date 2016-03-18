@@ -2,25 +2,21 @@
 module scenes {
     export class Play extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _playLabel: objects.Label;
+        private _ocean: objects.Ocean;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
+            
+
         }
         
         // PUBLIC METHODS +++++++++++++++++++++
         
         // Start Method
         public start(): void {
-
-
-            //Add Play Label
-            this._playLabel = new objects.Label(
-                "PLAY SCENE","60px Consolas", 
-                "#000000", 
-                config.Screen.CENTER_X,config.Screen.CENTER_Y, true);
-            this.addChild(this._playLabel);
+            this._ocean = new objects.Ocean();
+            this.addChild(this._ocean);
 
 
             // add this scene to the global stage container
@@ -29,7 +25,7 @@ module scenes {
 
         // PLAY Scene updates here
         public update(): void {
-
+            this._ocean.update();
         }
         
         
