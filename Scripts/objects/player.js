@@ -10,12 +10,12 @@ var objects;
         __extends(Player, _super);
         function Player() {
             _super.call(this, assets.getResult("plane"));
-            this._width = this.getBounds().width;
-            this._height = this.getBounds().height;
-            this.regX = this._width * 0.5;
-            this.regY = this._height * 0.5;
-            this._leftBounds = this._width * 0.5;
-            this._rightBounds = config.Screen.WIDTH - (this._width * 0.5);
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.regX = this.width * 0.5;
+            this.regY = this.height * 0.5;
+            this._leftBounds = this.width * 0.5;
+            this._rightBounds = config.Screen.WIDTH - (this.width * 0.5);
             this.y = 430;
         }
         // PRIVATE METHODS

@@ -1,22 +1,24 @@
 module objects {
     // PLAYER CLASS ++++++++++++++++++++++++++++++
     export class Player extends createjs.Bitmap {
-        private _width: number;
-        private _height: number;
+        // PRIVATE INSTANCE VARIABLES
         private _leftBounds: number;
         private _rightBounds: number;
 
+        // PUBLIC INSTANCE VARIABLES
+        public width: number;
+        public height: number;
         constructor() {
             super(assets.getResult("plane"));
 
-            this._width = this.getBounds().width;
-            this._height = this.getBounds().height;
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
 
-            this.regX = this._width * 0.5;
-            this.regY = this._height * 0.5;
+            this.regX = this.width * 0.5;
+            this.regY = this.height * 0.5;
 
-            this._leftBounds = this._width * 0.5;
-            this._rightBounds = config.Screen.WIDTH - (this._width * 0.5);
+            this._leftBounds = this.width * 0.5;
+            this._rightBounds = config.Screen.WIDTH - (this.width * 0.5);
 
             this.y = 430;
         }
