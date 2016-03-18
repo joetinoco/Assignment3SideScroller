@@ -17,8 +17,12 @@ var end: scenes.End;
 var assetData:objects.Asset[] = [
     // Add your Assets here
     {id: "StartButton", src:"../../Assets/images/StartButton.png"},
-    {id: "StartOverButton", src:"../../Assets/images/StartOverButton.png"}
-
+    {id: "RestartButton", src:"../../Assets/images/RestartButton.png"},
+    {id: "BackButton", src:"../../Assets/images/BackButton.png"},
+    {id: "ocean", src:"../../Assets/images/ocean.gif"},
+    {id: "plane", src:"../../Assets/images/plane.png"},
+    {id: "island", src:"../../Assets/images/island.png"},
+    {id: "cloud", src:"../../Assets/images/cloud.png"},
 ];
 
 function preload() {

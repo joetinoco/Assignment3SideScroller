@@ -19,10 +19,10 @@ var scenes;
             this._endLabel = new objects.Label("END SCENE", "60px Consolas", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
             this.addChild(this._endLabel);
             // add the BACK button to the OVER scene
-            this._startOverButton = new objects.Button("StartOverButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 180, true);
-            this.addChild(this._startOverButton);
+            this._restartButton = new objects.Button("RestartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 180, true);
+            this.addChild(this._restartButton);
             // START_OVER Button event listener
-            this._startOverButton.on("click", this._startOverButtonClick, this);
+            this._restartButton.on("click", this._restartButtonClick, this);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -31,7 +31,7 @@ var scenes;
         };
         //EVENT HANDLERS ++++++++++++++++++++
         // START_OVER Button click event handler
-        End.prototype._startOverButtonClick = function (event) {
+        End.prototype._restartButtonClick = function (event) {
             // Switch to the INTRO Scene
             scene = config.Scene.MENU;
             changeScene();
