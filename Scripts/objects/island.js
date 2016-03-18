@@ -38,5 +38,4 @@ var objects;
     }(objects.GameObject));
     objects.Island = Island;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=island.js.map

@@ -42,5 +42,4 @@ var objects;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=gameobject.js.map

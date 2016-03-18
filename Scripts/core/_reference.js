@@ -8,8 +8,8 @@
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/island.ts"/>
 /// <reference path="../objects/cloud.ts"/>
+/// <reference path="../objects/player.ts" />
 /// <reference path="../scenes/end.ts" />
 /// <reference path="../scenes/play.ts" />
 /// <reference path="../scenes/menu.ts" /> 
-
 //# sourceMappingURL=_reference.js.map
