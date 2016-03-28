@@ -14,26 +14,27 @@ var objects;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            this._leftBounds = this.width * 0.5;
-            this._rightBounds = config.Screen.WIDTH - (this.width * 0.5);
-            this.y = 430;
+            this._topBounds = this.height * 0.5;
+            this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
+            this.x = this.width * 0.5;
         }
         // PRIVATE METHODS
         Player.prototype._checkBounds = function () {
-            if (this.x < this._leftBounds) {
-                this.x = this._leftBounds;
+            if (this.y < this._topBounds) {
+                this.y = this._topBounds;
             }
-            if (this.x > this._rightBounds) {
-                this.x = this._rightBounds;
+            if (this.y > this._bottomBounds) {
+                this.y = this._bottomBounds;
             }
         };
         // PUBLIC METHODS
         Player.prototype.update = function () {
-            this.x = stage.mouseX;
+            this.y = stage.mouseY;
             this._checkBounds();
         };
         return Player;
     }(createjs.Bitmap));
     objects.Player = Player;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=player.js.map

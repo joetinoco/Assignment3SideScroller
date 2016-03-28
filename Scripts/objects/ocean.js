@@ -12,29 +12,30 @@ var objects;
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
         function Ocean() {
             _super.call(this, "ocean");
-            this._speed.y = 5; //ocean speed
-            this._reset(-960);
+            this._speed.x = -5; //ocean speed
+            this._reset(0);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         Ocean.prototype._checkBounds = function (value) {
             // check to see if the top of the ocean 
             // is met the top of the scene
-            if (this.y >= value) {
-                this._reset(-960);
+            if (this.x <= value) {
+                this._reset(0);
             }
         };
         // reset the ocean offscreen
         Ocean.prototype._reset = function (value) {
-            this.y = value;
+            this.x = value;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         Ocean.prototype.update = function () {
             // scroll the ocean 5 px per frame
-            this.y += this._speed.y;
-            this._checkBounds(0);
+            this.x += this._speed.x;
+            this._checkBounds(640 - 1440); // Screen dimensions - ocean width
         };
         return Ocean;
     }(objects.GameObject));
     objects.Ocean = Ocean;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=ocean.js.map

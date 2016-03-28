@@ -26,8 +26,8 @@ module objects {
            this.centerY = this.height * 0.5;
            this._topBounds = -this.height;
            this._bottomBounds = config.Screen.HEIGHT + this.height;
-           this._leftBounds = 0;
-           this._rightBounds = config.Screen.WIDTH - this.width;
+           this._leftBounds = -this.width;
+           this._rightBounds = config.Screen.WIDTH + this.width;
         }
         
         // PRIVATE METHODS ++++++++++++++++++++++++++++
@@ -48,7 +48,6 @@ module objects {
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         public update():void {
             var boundValue:number = 0;
-            // scroll the ocean 5 px per frame
             this.y += this._speed.y;
             this._checkBounds(boundValue);
         }

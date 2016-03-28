@@ -7,8 +7,8 @@ module objects {
         constructor() {
             super("ocean");
             
-           this._speed.y = 5; //ocean speed
-           this._reset(-960);
+           this._speed.x = -5; //ocean speed
+           this._reset(0);
         }
         
         // PRIVATE METHODS ++++++++++++++++++++++++++++
@@ -16,22 +16,22 @@ module objects {
             // check to see if the top of the ocean 
             // is met the top of the scene
             
-            if(this.y >= value) {
-                this._reset(-960);
+            if(this.x <= value) {
+                this._reset(0);
             }
         }
         
         // reset the ocean offscreen
         protected _reset(value:number):void {
-            this.y = value;
+            this.x = value;
         }
         
         
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         public update():void {
             // scroll the ocean 5 px per frame
-            this.y += this._speed.y;
-            this._checkBounds(0);
+            this.x += this._speed.x;
+            this._checkBounds(640-1440); // Screen dimensions - ocean width
         }
     }
 }

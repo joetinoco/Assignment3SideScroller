@@ -18,8 +18,8 @@ var objects;
             this.centerY = this.height * 0.5;
             this._topBounds = -this.height;
             this._bottomBounds = config.Screen.HEIGHT + this.height;
-            this._leftBounds = 0;
-            this._rightBounds = config.Screen.WIDTH - this.width;
+            this._leftBounds = -this.width;
+            this._rightBounds = config.Screen.WIDTH + this.width;
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         GameObject.prototype._checkBounds = function (value) {
@@ -36,7 +36,6 @@ var objects;
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         GameObject.prototype.update = function () {
             var boundValue = 0;
-            // scroll the ocean 5 px per frame
             this.y += this._speed.y;
             this._checkBounds(boundValue);
         };
@@ -44,4 +43,5 @@ var objects;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=gameobject.js.map
