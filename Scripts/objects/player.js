@@ -19,8 +19,10 @@ var objects;
             this._topBounds = this.height * 0.5;
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
             this.x = (this.width * 0.5) + 20;
+            this.y = 350;
             this._pitch = 0;
             this._damage = 0;
+            this._distanceRemaining = 5000;
             this._lastCollidedObject = new objects.GameObject("plane"); // 'Dummy' startup object 
         }
         // PRIVATE METHODS
@@ -29,7 +31,9 @@ var objects;
                 this.y = this._topBounds;
             }
             if (this.y > this._bottomBounds) {
-                this.y = this._bottomBounds;
+                // Player crashed the plane
+                scene = config.Scene.END;
+                changeScene();
             }
         };
         // PUBLIC METHODS
@@ -37,24 +41,31 @@ var objects;
             this._pitch = -(this.y - stage.mouseY);
             this.y += (this._pitch / 10) + (this._damage * 3);
             this.rotation = this._pitch / 3;
+            this._distanceRemaining--;
             this._checkBounds();
         };
+        // Register and treat a collision
         Player.prototype.registerCollision = function (obj) {
             if (this._lastCollidedObject.id != obj.id) {
                 switch (obj.name) {
                     case "extinguisher":
                         this._damage = 0;
-                        console.log('Plane fixed');
                         this.image = this._defaultImage;
                         break;
                     case "birds":
                         this._damage++;
-                        console.log('Plane is damaged');
                         this.image = this._damagedImage;
                         break;
                 }
             }
             this._lastCollidedObject = obj;
+        };
+        // Return score elements to update screen labels
+        Player.prototype.scores = function () {
+            return {
+                distance: String(this._distanceRemaining + ' m'),
+                damage: String(this._damage * 10 + '%')
+            };
         };
         return Player;
     }(createjs.Bitmap));

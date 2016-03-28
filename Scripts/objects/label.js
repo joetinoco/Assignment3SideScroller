@@ -18,6 +18,10 @@ var objects;
             this.x = x;
             this.y = y;
         }
+        // PUBLIC METHODS
+        Label.prototype.updateText = function (newText) {
+            this.text = newText;
+        };
         return Label;
     }(createjs.Text));
     objects.Label = Label;

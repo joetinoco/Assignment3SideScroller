@@ -19,22 +19,30 @@ var scenes;
             this._flockCount = 3;
             // Instantiate Cloud array
             this._birds = new Array();
-            // added sky to the scene
+            // add sky to the scene
             this._sky = new objects.Sky();
             this.addChild(this._sky);
-            // added island to the scene
-            this._island = new objects.Island();
-            this.addChild(this._island);
-            // added player to the scene
+            // add ground to the scene
+            this._ground = new objects.Ground();
+            this.addChild(this._ground);
+            // add extinguisher to the scene
+            this._extinguisher = new objects.Extinguisher();
+            this.addChild(this._extinguisher);
+            // add player to the scene
             this._player = new objects.Player();
             this.addChild(this._player);
-            //added clouds to the scene
+            // add birds to the scene
             for (var flock = 0; flock < this._flockCount; flock++) {
                 this._birds[flock] = new objects.Birds();
                 this.addChild(this._birds[flock]);
             }
-            // added collision manager to the scene
+            // add collision manager to the scene
             this._collision = new managers.Collision(this._player);
+            // add labels
+            this._damageLabel = new objects.Label("Damage: ", "15px Consolas", "#000000", 10, 10, false);
+            this._distanceLabel = new objects.Label("Distance: ", "15px Consolas", "#000000", 10, 30, false);
+            this.addChild(this._damageLabel);
+            this.addChild(this._distanceLabel);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -42,13 +50,20 @@ var scenes;
         Play.prototype.update = function () {
             var _this = this;
             this._sky.update();
-            this._island.update();
+            this._ground.update();
+            this._extinguisher.update();
             this._player.update();
             this._birds.forEach(function (bird) {
                 bird.update();
                 _this._collision.check(bird);
             });
-            this._collision.check(this._island);
+            // Update labels
+            var scoreElements = this._player.scores();
+            this._damageLabel.updateText('Damage: ' +
+                scoreElements.damage);
+            this._distanceLabel.updateText('Distance: ' +
+                scoreElements.distance);
+            this._collision.check(this._extinguisher);
         };
         return Play;
     }(objects.Scene));

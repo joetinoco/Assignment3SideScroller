@@ -5,37 +5,38 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var objects;
 (function (objects) {
-    // SKY CLASS ++++++++++++++++++++++++++++++++++++
-    var Sky = (function (_super) {
-        __extends(Sky, _super);
+    // GROUND CLASS ++++++++++++++++++++++++++++++++++++
+    var Ground = (function (_super) {
+        __extends(Ground, _super);
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
-        function Sky() {
-            _super.call(this, "sky");
-            this._speed.x = -3;
+        function Ground() {
+            _super.call(this, "ground");
+            this._speed.x = -5;
+            this.y = config.Screen.HEIGHT - this.getBounds().height;
             this._reset(0);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
-        Sky.prototype._checkBounds = function (value) {
-            // check to see if the top of the sky 
-            // met the top of the scene
+        Ground.prototype._checkBounds = function (value) {
+            // check to see if the edge of the ground
+            // met the edge of the screen
             if (this.x <= value) {
                 this._reset(0);
             }
         };
         // reset the sky offscreen
-        Sky.prototype._reset = function (value) {
+        Ground.prototype._reset = function (value) {
             this.x = value;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
-        Sky.prototype.update = function () {
-            // scroll the sky 5 px per frame
+        Ground.prototype.update = function () {
+            // scroll the ground
             this.x += this._speed.x;
-            this._checkBounds(640 - 2880); // Screen dimensions - sky width
+            this._checkBounds(640 - 2880); // Screen dimensions - width
         };
-        return Sky;
+        return Ground;
     }(objects.GameObject));
-    objects.Sky = Sky;
+    objects.Ground = Ground;
 })(objects || (objects = {}));
 
-//# sourceMappingURL=sky.js.map
+//# sourceMappingURL=ground.js.map

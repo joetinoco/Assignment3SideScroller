@@ -6,6 +6,7 @@ module objects {
         private _bottomBounds: number;
         private _pitch: number; // Plane nose angle
         private _damage: number;
+        private _distanceRemaining: number;
         private _lastCollidedObject: GameObject;
         private _defaultImage: any;
         private _damagedImage: any;
@@ -28,8 +29,10 @@ module objects {
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
 
             this.x = (this.width * 0.5) + 20;
+            this.y = 350;
             this._pitch = 0;
             this._damage = 0;
+            this._distanceRemaining = 5000;
             this._lastCollidedObject = new GameObject("plane"); // 'Dummy' startup object 
         }
 
@@ -40,7 +43,9 @@ module objects {
             }
 
             if (this.y > this._bottomBounds) {
-                this.y = this._bottomBounds;
+                // Player crashed the plane
+                scene = config.Scene.END;
+                changeScene();
             }
         }
 
@@ -50,26 +55,35 @@ module objects {
             this._pitch = -(this.y - stage.mouseY);
             this.y += (this._pitch / 10) + (this._damage * 3);
             this.rotation = this._pitch / 3;
+            this._distanceRemaining--;
             this._checkBounds();
+
         }
 
+        // Register and treat a collision
         public registerCollision(obj: GameObject): void {
             if (this._lastCollidedObject.id != obj.id) {
                 switch (obj.name) {
                     case "extinguisher":
                         this._damage = 0;
-                        console.log('Plane fixed');
                         this.image = this._defaultImage;
                         break;
                     case "birds":
                         this._damage++;
-                        console.log('Plane is damaged');
                         this.image = this._damagedImage;
                         break;
                 }
             }
 
             this._lastCollidedObject = obj;
+        }
+        
+        // Return score elements to update screen labels
+        public scores(): any {
+            return {
+                distance: String(this._distanceRemaining + ' m'),
+                damage: String(this._damage * 10 + '%')
+            }
         }
     }
 }

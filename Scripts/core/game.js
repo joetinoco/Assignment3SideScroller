@@ -16,6 +16,7 @@ var assetData = [
     { id: "RestartButton", src: "../../Assets/images/RestartButton.png" },
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
     { id: "sky", src: "../../Assets/images/sky.jpg" },
+    { id: "ground", src: "../../Assets/images/ground.png" },
     { id: "plane", src: "../../Assets/images/plane.png" },
     { id: "plane_flames", src: "../../Assets/images/plane_flames.png" },
     { id: "extinguisher", src: "../../Assets/images/extinguisher.png" },

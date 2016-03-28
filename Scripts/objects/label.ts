@@ -11,5 +11,11 @@
             this.x = x;
             this.y = y;
         }
+
+        // PUBLIC METHODS
+        public updateText(newText: string): void{
+            this.text = newText;
+        }
     }
+
 } 
