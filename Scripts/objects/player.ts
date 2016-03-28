@@ -6,7 +6,7 @@ module objects {
         private _bottomBounds: number;
         private _pitch: number; // Plane nose angle
         private _damage: number;
-        private _distanceRemaining: number;
+        private _distance: number;
         private _lastCollidedObject: GameObject;
         private _defaultImage: any;
         private _damagedImage: any;
@@ -32,7 +32,7 @@ module objects {
             this.y = 350;
             this._pitch = 0;
             this._damage = 0;
-            this._distanceRemaining = 5000;
+            this._distance = 0;
             this._lastCollidedObject = new GameObject("plane"); // 'Dummy' startup object 
         }
 
@@ -53,9 +53,14 @@ module objects {
         // PUBLIC METHODS
         public update(): void {
             this._pitch = -(this.y - stage.mouseY);
-            this.y += (this._pitch / 10) + (this._damage * 3);
-            this.rotation = this._pitch / 3;
-            this._distanceRemaining--;
+            this.y += (this._pitch / 10);
+            
+            // Add a random 'bump' according to the damage amount
+            this.y += Math.random() * (this._damage / 2);
+            
+            var angle:number = this._pitch / 3;
+            this.rotation = angle >= -30 ? angle : -30;
+            this._distance++;
             this._checkBounds();
 
         }
@@ -69,7 +74,7 @@ module objects {
                         this.image = this._defaultImage;
                         break;
                     case "birds":
-                        this._damage++;
+                        this._damage += 15;
                         this.image = this._damagedImage;
                         break;
                 }
@@ -81,8 +86,8 @@ module objects {
         // Return score elements to update screen labels
         public scores(): any {
             return {
-                distance: String(this._distanceRemaining + ' m'),
-                damage: String(this._damage * 10 + '%')
+                distance: this._distance,
+                damage: this._damage
             }
         }
     }

@@ -57,13 +57,14 @@ var scenes;
                 bird.update();
                 _this._collision.check(bird);
             });
+            this._collision.check(this._extinguisher);
             // Update labels
             var scoreElements = this._player.scores();
             this._damageLabel.updateText('Damage: ' +
-                scoreElements.damage);
+                scoreElements.damage + '%');
             this._distanceLabel.updateText('Distance: ' +
-                scoreElements.distance);
-            this._collision.check(this._extinguisher);
+                scoreElements.distance + ' m');
+            this.totalDistance = scoreElements.distance;
         };
         return Play;
     }(objects.Scene));

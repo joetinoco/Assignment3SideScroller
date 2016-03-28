@@ -11,6 +11,7 @@ var scene: number;
 
 // Game Scenes
 var menu: scenes.Menu;
+var instructions: scenes.Instructions;
 var play: scenes.Play;
 var end: scenes.End;
 
@@ -18,6 +19,7 @@ var assetData:objects.Asset[] = [
     // Add your Assets here
     {id: "StartButton", src:"../../Assets/images/StartButton.png"},
     {id: "RestartButton", src:"../../Assets/images/RestartButton.png"},
+    {id: "InstructionsButton", src:"../../Assets/images/InstructionsButton.png"},
     {id: "BackButton", src:"../../Assets/images/BackButton.png"},
     {id: "sky", src:"../../Assets/images/sky.jpg"},
     {id: "ground", src:"../../Assets/images/ground.png"},
@@ -25,6 +27,9 @@ var assetData:objects.Asset[] = [
     {id: "plane_flames", src:"../../Assets/images/plane_flames.png"},
     {id: "extinguisher", src:"../../Assets/images/extinguisher.png"},
     {id: "birds", src:"../../Assets/images/birds.png"},
+    {id: "titlescreen", src:"../../Assets/images/titlescreen.jpg"},
+    {id: "instructionsscreen", src:"../../Assets/images/instructionsscreen.png"},
+    {id: "gameoverscreen", src:"../../Assets/images/gameoverscreen.jpg"},
 ];
 
 function preload() {
@@ -93,25 +98,27 @@ function changeScene(): void {
             stage.removeAllChildren();
             menu = new scenes.Menu();
             currentScene = menu;
-            console.log("Starting MENU Scene");
+            break;
+        case config.Scene.INSTRUCTIONS:
+            // show the PLAY scene
+            stage.removeAllChildren();
+            instructions = new scenes.Instructions();
+            currentScene = instructions;
             break;
         case config.Scene.PLAY:
             // show the PLAY scene
             stage.removeAllChildren();
             play = new scenes.Play();
             currentScene = play;
-            console.log("Starting PLAY Scene");
             break;
         case config.Scene.END:
             // show the END scene
             stage.removeAllChildren();
             end = new scenes.End();
             currentScene = end;
-            console.log("Starting END Scene");
             break;
     }
 
-    console.log(currentScene.numChildren);
 }
 
 window.onload = preload;

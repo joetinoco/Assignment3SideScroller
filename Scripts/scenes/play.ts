@@ -11,6 +11,9 @@ module scenes {
         private _damageLabel: objects.Label;
         private _distanceLabel: objects.Label;
         private _collision: managers.Collision;
+        
+        //
+        public totalDistance: number;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -82,14 +85,16 @@ module scenes {
                 this._collision.check(bird);
             });
             
+            this._collision.check(this._extinguisher);
+            
             // Update labels
             var scoreElements = this._player.scores();
             this._damageLabel.updateText('Damage: ' + 
-                scoreElements.damage);
+                scoreElements.damage + '%');
             this._distanceLabel.updateText('Distance: ' + 
-                scoreElements.distance);
-
-            this._collision.check(this._extinguisher);
+                scoreElements.distance + ' m');
+                
+            this.totalDistance = scoreElements.distance;
         }
 
 

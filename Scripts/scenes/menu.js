@@ -15,14 +15,18 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Menu.prototype.start = function () {
-            //Add Menu Label
-            this._menuLabel = new objects.Label("MENU SCENE", "60px Consolas", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
-            this.addChild(this._menuLabel);
+            // Add background
+            this._background = new createjs.Bitmap(assets.getResult('titlescreen'));
+            this.addChild(this._background);
             // add the Start button to the MENU scene
-            this._startButton = new objects.Button("StartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 180, true);
+            this._startButton = new objects.Button("StartButton", config.Screen.CENTER_X - 150, config.Screen.CENTER_Y + 180, true);
             this.addChild(this._startButton);
-            // Start Button event listener
+            // add the 'instructions' button to the menu scene
+            this._instructionsButton = new objects.Button("InstructionsButton", config.Screen.CENTER_X + 150, config.Screen.CENTER_Y + 180, true);
+            this.addChild(this._instructionsButton);
+            // Event listeners
             this._startButton.on("click", this._startButtonClick, this);
+            this._instructionsButton.on("click", this._instructionsButtonClick, this);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -30,10 +34,12 @@ var scenes;
         Menu.prototype.update = function () {
         };
         //EVENT HANDLERS ++++++++++++++++++++
-        // LEFT_CAVE Button click event handler
         Menu.prototype._startButtonClick = function (event) {
-            // Switch to the LEFT_CAVE Scene
             scene = config.Scene.PLAY;
+            changeScene();
+        };
+        Menu.prototype._instructionsButtonClick = function (event) {
+            scene = config.Scene.INSTRUCTIONS;
             changeScene();
         };
         return Menu;
