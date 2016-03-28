@@ -5,39 +5,44 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var objects;
 (function (objects) {
-    // ISLAND CLASS ++++++++++++++++++++++++++++++++++++
-    var Island = (function (_super) {
-        __extends(Island, _super);
+    // BIRDS CLASS ++++++++++++++++++++++++++++++++++++
+    var Birds = (function (_super) {
+        __extends(Birds, _super);
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
+        // PUBLIC INSTANCE VARIABLES +++++++++++++++++
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
-        function Island() {
-            _super.call(this, "extinguisher");
-            this._speed.x = -5; //island speed
+        function Birds() {
+            _super.call(this, "birds");
             this._reset(this._rightBounds);
-            this.name = "extinguisher";
+            this.name = "birds";
+            this.id = Math.floor(Math.random() * 100000);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
-        Island.prototype._checkBounds = function (value) {
-            // check to see if the right of the island 
+        Birds.prototype._checkBounds = function (value) {
+            // check to see if the right of the flock 
             // is outside the viewport         
             if (this.x <= value) {
                 this._reset(this._rightBounds);
             }
         };
-        // reset the island offscreen
-        Island.prototype._reset = function (value) {
+        // reset the birds offscreen
+        Birds.prototype._reset = function (value) {
+            this._speed.x = -(Math.floor(Math.random() * 5) + 5);
+            this._speed.y = Math.floor(Math.random() * 4) - 2;
+            this.id = Math.floor(Math.random() * 100000);
             this.x = value;
             this.y = Math.floor(Math.random() * this._bottomBounds) + this._topBounds;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
-        Island.prototype.update = function () {
-            // scroll the island 5 px per frame
+        Birds.prototype.update = function () {
+            // scroll the birds across the screen
+            this.y += this._speed.y;
             this.x += this._speed.x;
             this._checkBounds(this._leftBounds);
         };
-        return Island;
+        return Birds;
     }(objects.GameObject));
-    objects.Island = Island;
+    objects.Birds = Birds;
 })(objects || (objects = {}));
 
-//# sourceMappingURL=island.js.map
+//# sourceMappingURL=birds.js.map

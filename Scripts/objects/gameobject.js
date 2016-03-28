@@ -39,6 +39,9 @@ var objects;
             this.y += this._speed.y;
             this._checkBounds(boundValue);
         };
+        GameObject.prototype.registerCollision = function (obj) {
+            this._lastCollidedObject = obj;
+        };
         return GameObject;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;

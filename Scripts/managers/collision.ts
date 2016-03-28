@@ -28,16 +28,7 @@ module managers {
             /* check if the distance between the player and 
               the other object is less than the minimum distance */
             if(this.distance(startPoint, endPoint) < minimumDistance) {
-                
-                // check if it's an island hit
-                if(object.name === "island") {
-                    console.log("island hit!");
-                }
-                
-                // check if it's a cloud hit
-                if(object.name === "cloud") {
-                    console.log("cloud hit!");
-                }
+                this._player.registerCollision(object);
             }
         }
     }

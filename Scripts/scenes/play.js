@@ -15,13 +15,13 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Play.prototype.start = function () {
-            // Set Cloud Count
-            this._cloudCount = 3;
+            // Set bird flock count
+            this._flockCount = 3;
             // Instantiate Cloud array
-            this._clouds = new Array();
-            // added ocean to the scene
-            this._ocean = new objects.Ocean();
-            this.addChild(this._ocean);
+            this._birds = new Array();
+            // added sky to the scene
+            this._sky = new objects.Sky();
+            this.addChild(this._sky);
             // added island to the scene
             this._island = new objects.Island();
             this.addChild(this._island);
@@ -29,9 +29,9 @@ var scenes;
             this._player = new objects.Player();
             this.addChild(this._player);
             //added clouds to the scene
-            for (var cloud = 0; cloud < this._cloudCount; cloud++) {
-                this._clouds[cloud] = new objects.Cloud();
-                this.addChild(this._clouds[cloud]);
+            for (var flock = 0; flock < this._flockCount; flock++) {
+                this._birds[flock] = new objects.Birds();
+                this.addChild(this._birds[flock]);
             }
             // added collision manager to the scene
             this._collision = new managers.Collision(this._player);
@@ -41,12 +41,12 @@ var scenes;
         // PLAY Scene updates here
         Play.prototype.update = function () {
             var _this = this;
-            this._ocean.update();
+            this._sky.update();
             this._island.update();
             this._player.update();
-            this._clouds.forEach(function (cloud) {
-                cloud.update();
-                _this._collision.check(cloud);
+            this._birds.forEach(function (bird) {
+                bird.update();
+                _this._collision.check(bird);
             });
             this._collision.check(this._island);
         };

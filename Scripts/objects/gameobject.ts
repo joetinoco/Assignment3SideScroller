@@ -7,6 +7,7 @@ module objects {
         protected _rightBounds:number;
         protected _topBounds:number;
         protected _bottomBounds:number;
+        protected _lastCollidedObject: GameObject;
         
         // PUBLIC INSTANCE VARIABLES
         public name:string;
@@ -50,6 +51,10 @@ module objects {
             var boundValue:number = 0;
             this.y += this._speed.y;
             this._checkBounds(boundValue);
+        }
+        
+        public registerCollision(obj:GameObject):void {
+            this._lastCollidedObject = obj;
         }
     }
 }
