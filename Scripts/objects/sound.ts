@@ -26,7 +26,9 @@ module objects {
 
         // Stop audio playback
         public stop() {
-            this._instance.stop();
+            if (this._instance){
+                this._instance.stop();
+            }
         }
     }
 }

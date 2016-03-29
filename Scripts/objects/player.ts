@@ -71,8 +71,12 @@ module objects {
 
         // PUBLIC METHODS
         public update(): void {
-            this._pitch = -(this.y - stage.mouseY);
-            this.y += (this._pitch / 10);
+            // Plane pitch control is only possible if the plane
+            // is not completely damaged
+            if (this._damage < 100) {
+                this._pitch = -(this.y - stage.mouseY);
+                this.y += (this._pitch / 10);
+            } else this._damage = 100;
 
             // Add a random 'bump' according to the damage amount
             this.y += Math.random() * (this._damage / 2);

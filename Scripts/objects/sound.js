@@ -24,7 +24,9 @@ var objects;
         };
         // Stop audio playback
         Sound.prototype.stop = function () {
-            this._instance.stop();
+            if (this._instance) {
+                this._instance.stop();
+            }
         };
         return Sound;
     }());
