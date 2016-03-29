@@ -11,7 +11,7 @@
 
             this.width = 150;
             this.height = 50;
-
+            
             if (centered) {
                 this.regX = this.width * 0.5;
                 this.regY = this.height * 0.5;

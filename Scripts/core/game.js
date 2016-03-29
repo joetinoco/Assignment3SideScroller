@@ -12,20 +12,32 @@ var instructions;
 var play;
 var end;
 var assetData = [
-    // Add your Assets here
+    // Buttons
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "RestartButton", src: "../../Assets/images/RestartButton.png" },
     { id: "InstructionsButton", src: "../../Assets/images/InstructionsButton.png" },
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
+    // Screen elements
     { id: "sky", src: "../../Assets/images/sky.jpg" },
     { id: "ground", src: "../../Assets/images/ground.png" },
     { id: "plane", src: "../../Assets/images/plane.png" },
     { id: "plane_flames", src: "../../Assets/images/plane_flames.png" },
     { id: "extinguisher", src: "../../Assets/images/extinguisher.png" },
     { id: "birds", src: "../../Assets/images/birds.png" },
+    // Title screens
     { id: "titlescreen", src: "../../Assets/images/titlescreen.jpg" },
     { id: "instructionsscreen", src: "../../Assets/images/instructionsscreen.png" },
     { id: "gameoverscreen", src: "../../Assets/images/gameoverscreen.jpg" },
+    // Sounds
+    { id: "aircraftdive", src: "../../Assets/audio/aircraftdive.wav" },
+    { id: "enginedamaged", src: "../../Assets/audio/enginedamaged.wav" },
+    { id: "enginenormal", src: "../../Assets/audio/enginenormal.wav" },
+    { id: "extinguish", src: "../../Assets/audio/extinguish.wav" },
+    { id: "hit", src: "../../Assets/audio/hit.wav" },
+    // Music (by The Chemical Brothers - please don't sue)
+    { id: "titlescreenmusic", src: "../../Assets/audio/fubeats.ogg" },
+    { id: "gameplaymusic", src: "../../Assets/audio/superflash.ogg" },
+    { id: "gameovermusic", src: "../../Assets/audio/onetoomany.ogg" },
 ];
 function preload() {
     assets = new createjs.LoadQueue();

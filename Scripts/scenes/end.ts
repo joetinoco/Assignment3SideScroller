@@ -5,6 +5,7 @@ module scenes {
         private _background: createjs.Bitmap;
         private _restartButton: objects.Button;
         private _score: objects.Label;
+        private _sceneMusic: objects.Sound;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -43,6 +44,10 @@ module scenes {
 
             // add this scene to the global stage container
             stage.addChild(this);
+
+            // Play the scene soundtrack
+            this._sceneMusic = new objects.Sound('gameovermusic');
+            this._sceneMusic.play(-1);
         }
 
         // PLAY Scene updates here
@@ -56,6 +61,7 @@ module scenes {
         // START_OVER Button click event handler
         private _restartButtonClick(event: createjs.MouseEvent) {
             // Switch to the INTRO Scene
+            this._sceneMusic.stop();
             scene = config.Scene.MENU;
             changeScene();
         }

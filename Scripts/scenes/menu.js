@@ -29,16 +29,20 @@ var scenes;
             this._instructionsButton.on("click", this._instructionsButtonClick, this);
             // add this scene to the global stage container
             stage.addChild(this);
+            this._sceneMusic = new objects.Sound('titlescreenmusic');
+            this._sceneMusic.play(-1);
         };
         // INTRO Scene updates here
         Menu.prototype.update = function () {
         };
         //EVENT HANDLERS ++++++++++++++++++++
         Menu.prototype._startButtonClick = function (event) {
+            this._sceneMusic.stop();
             scene = config.Scene.PLAY;
             changeScene();
         };
         Menu.prototype._instructionsButtonClick = function (event) {
+            this._sceneMusic.stop();
             scene = config.Scene.INSTRUCTIONS;
             changeScene();
         };

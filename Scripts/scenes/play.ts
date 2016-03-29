@@ -67,7 +67,7 @@ module scenes {
                 10, 30, false);
             this.addChild(this._damageLabel);
             this.addChild(this._distanceLabel);
-
+            
             // add this scene to the global stage container
             stage.addChild(this);
         }

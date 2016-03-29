@@ -29,6 +29,9 @@ var scenes;
             this._restartButton.on("click", this._restartButtonClick, this);
             // add this scene to the global stage container
             stage.addChild(this);
+            // Play the scene soundtrack
+            this._sceneMusic = new objects.Sound('gameovermusic');
+            this._sceneMusic.play(-1);
         };
         // PLAY Scene updates here
         End.prototype.update = function () {
@@ -37,6 +40,7 @@ var scenes;
         // START_OVER Button click event handler
         End.prototype._restartButtonClick = function (event) {
             // Switch to the INTRO Scene
+            this._sceneMusic.stop();
             scene = config.Scene.MENU;
             changeScene();
         };

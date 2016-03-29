@@ -10,6 +10,11 @@ module objects {
         private _lastCollidedObject: GameObject;
         private _defaultImage: any;
         private _damagedImage: any;
+        private _sndEngine: objects.Sound;
+        private _sndEngineDamaged: objects.Sound;
+        private _sndBirdStrike: objects.Sound;
+        private _sndExtinguish: objects.Sound;
+        private _sceneMusic: objects.Sound;
 
         // PUBLIC INSTANCE VARIABLES
         public width: number;
@@ -18,6 +23,11 @@ module objects {
             super(assets.getResult("plane"));
             this._defaultImage = assets.getResult("plane");
             this._damagedImage = assets.getResult("plane_flames");
+
+            this._sndEngine = new objects.Sound('enginenormal');
+            this._sndEngineDamaged = new objects.Sound('enginedamaged');
+            this._sndBirdStrike = new objects.Sound('hit');
+            this._sndExtinguish = new objects.Sound('extinguish');
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -33,7 +43,13 @@ module objects {
             this._pitch = 0;
             this._damage = 0;
             this._distance = 0;
-            this._lastCollidedObject = new GameObject("plane"); // 'Dummy' startup object 
+            this._lastCollidedObject = new GameObject("plane"); // 'Dummy' startup object
+
+            // Play the scene soundtrack
+            this._sceneMusic = new objects.Sound('gameplaymusic');
+            this._sceneMusic.play(-1);
+
+            this._sndEngine.play(-1); // Gentlemen, start your engines
         }
 
         // PRIVATE METHODS
@@ -44,6 +60,9 @@ module objects {
 
             if (this.y > this._bottomBounds) {
                 // Player crashed the plane
+                this._sndEngine.stop();
+                this._sndEngineDamaged.stop();
+                this._sceneMusic.stop();
                 scene = config.Scene.END;
                 changeScene();
             }
@@ -54,11 +73,11 @@ module objects {
         public update(): void {
             this._pitch = -(this.y - stage.mouseY);
             this.y += (this._pitch / 10);
-            
+
             // Add a random 'bump' according to the damage amount
             this.y += Math.random() * (this._damage / 2);
-            
-            var angle:number = this._pitch / 3;
+
+            var angle: number = this._pitch / 3;
             this.rotation = angle >= -30 ? angle : -30;
             this._distance++;
             this._checkBounds();
@@ -72,17 +91,23 @@ module objects {
                     case "extinguisher":
                         this._damage = 0;
                         this.image = this._defaultImage;
+                        this._sndExtinguish.play();
+                        this._sndEngineDamaged.stop();
+                        this._sndEngine.play(-1);
                         break;
                     case "birds":
                         this._damage += 15;
                         this.image = this._damagedImage;
+                        this._sndBirdStrike.play();
+                        this._sndEngine.stop();
+                        this._sndEngineDamaged.play(-1);
                         break;
                 }
             }
 
             this._lastCollidedObject = obj;
         }
-        
+
         // Return score elements to update screen labels
         public scores(): any {
             return {

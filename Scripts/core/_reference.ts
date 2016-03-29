@@ -7,6 +7,7 @@
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/scene.ts" />
 
+/// <reference path="../objects/sound.ts" />
 /// <reference path="../objects/gameobject.ts" />
 /// <reference path="../objects/sky.ts" />
 /// <reference path="../objects/ground.ts" />

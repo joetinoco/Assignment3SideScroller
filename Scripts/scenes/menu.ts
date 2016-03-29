@@ -5,6 +5,7 @@ module scenes {
         private _background: createjs.Bitmap;
         private _startButton: objects.Button;
         private _instructionsButton: objects.Button;
+        private _sceneMusic: objects.Sound;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -40,6 +41,9 @@ module scenes {
             
             // add this scene to the global stage container
             stage.addChild(this);
+            
+            this._sceneMusic = new objects.Sound('titlescreenmusic');
+            this._sceneMusic.play(-1);
         }
 
         // INTRO Scene updates here
@@ -51,11 +55,13 @@ module scenes {
         //EVENT HANDLERS ++++++++++++++++++++
         
         private _startButtonClick(event: createjs.MouseEvent) {
+            this._sceneMusic.stop();
             scene = config.Scene.PLAY;
             changeScene();
         }
         
         private _instructionsButtonClick(event: createjs.MouseEvent) {
+            this._sceneMusic.stop();
             scene = config.Scene.INSTRUCTIONS;
             changeScene();
         }
