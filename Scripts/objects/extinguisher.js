@@ -27,7 +27,7 @@ var objects;
         // reset the bitmap offscreen
         Extinguisher.prototype._reset = function (value) {
             this.x = value;
-            this.y = Math.floor(Math.random() * this._bottomBounds) + this._topBounds;
+            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this._topBounds;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         Extinguisher.prototype.update = function () {

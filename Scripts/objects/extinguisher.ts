@@ -24,7 +24,7 @@ module objects {
         // reset the bitmap offscreen
         protected _reset(value:number):void {          
             this.x = value;
-            this.y = Math.floor(Math.random() * this._bottomBounds) + this._topBounds;
+            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this._topBounds;
         }
         
         

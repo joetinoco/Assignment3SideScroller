@@ -31,7 +31,13 @@ var objects;
             this._speed.y = Math.floor(Math.random() * 4) - 2;
             this.id = Math.floor(Math.random() * 100000);
             this.x = value;
-            this.y = Math.floor(Math.random() * this._bottomBounds) + this._topBounds;
+            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this._topBounds;
+        };
+        // Keep birds flying above the ground
+        Birds.prototype._keepAboveGround = function (value) {
+            if (this.y >= value && this._speed.y > 0) {
+                this._speed.y = -this._speed.y;
+            }
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         Birds.prototype.update = function () {
@@ -39,6 +45,7 @@ var objects;
             this.y += this._speed.y;
             this.x += this._speed.x;
             this._checkBounds(this._leftBounds);
+            this._keepAboveGround(config.Screen.HEIGHT - this.height);
         };
         return Birds;
     }(objects.GameObject));

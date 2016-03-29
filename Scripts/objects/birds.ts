@@ -29,7 +29,14 @@ module objects {
             this._speed.y = Math.floor(Math.random() * 4) - 2;
             this.id = Math.floor(Math.random() * 100000);
             this.x = value;
-            this.y = Math.floor(Math.random() * this._bottomBounds) + this._topBounds;
+            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this._topBounds;
+        }
+        
+        // Keep birds flying above the ground
+        protected _keepAboveGround(value:number){
+            if(this.y >= value && this._speed.y > 0) {
+                this._speed.y = -this._speed.y;
+            }
         }
         
         
@@ -39,6 +46,7 @@ module objects {
             this.y += this._speed.y;
             this.x += this._speed.x;
             this._checkBounds(this._leftBounds);
+            this._keepAboveGround(config.Screen.HEIGHT - this.height);
         }
     }
 }
